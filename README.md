@@ -181,6 +181,8 @@ Politique de filtrage stricte (Implicit Deny par défaut) en pFsense sur l'inter
 
 
 ### **LAN CASA `win-7`**
+
+ `comande tracert`
   
 <img width="548" height="142" alt="4" src="https://github.com/user-attachments/assets/e677f452-a8f0-42b0-9580-f3b91bd2bf76" />
 
@@ -196,24 +198,33 @@ Politique de filtrage stricte (Implicit Deny par défaut) en pFsense sur l'inter
 
 ### **LAN RABAT `KALI`**
 
- <img width="583" height="157" alt="2" src="https://github.com/user-attachments/assets/1144c7a0-51b7-478b-b9b7-ff08e9cc504e" />
+`Comande traceroute `
+
+  <img width="583" height="157" alt="2" src="https://github.com/user-attachments/assets/1144c7a0-51b7-478b-b9b7-ff08e9cc504e" />
+ 
 
 ` L'accès à https://rabat.ma:8443`
 
-<img width="666" height="390" alt="4" src="https://github.com/user-attachments/assets/8aeb0c42-7bf5-46f3-94b4-67e350568d54" />
+ <img width="666" height="390" alt="4" src="https://github.com/user-attachments/assets/8aeb0c42-7bf5-46f3-94b4-67e350568d54" />
 
 
 ` Blocage https://casablanca.ma:8543`
 
-<img width="1083" height="580" alt="weddfv" src="https://github.com/user-attachments/assets/3a0e2bfb-6ac2-483e-a5f1-321aa99b5d17" />
-
-
+ <img width="1083" height="580" alt="weddfv" src="https://github.com/user-attachments/assets/3a0e2bfb-6ac2-483e-a5f1-321aa99b5d17" />
 
 
 
 - **Wireshark** :
-  - Avant chiffrement : trafic OSPF, SSH et ICMP visibles en clair.
+  - Avant chiffrement : trafic TCP, SSH , ICMP ETC... visibles en clair.
+    
+    <img width="1182" height="612" alt="bbnn" src="https://github.com/user-attachments/assets/7fcbff9d-8524-40b4-87b7-7a8928cc21b3" />
+    <img width="951" height="580" alt="22" src="https://github.com/user-attachments/assets/c0fc5554-87db-4f51-acbe-281c9759c772" />
+
+
   - Après activation du DMVPN/IPsec : seul le protocole **ESP (IP 50)** est visible sur le WAN, preuve du chiffrement total des flux.
+
+   <img width="857" height="477" alt="rtrt" src="https://github.com/user-attachments/assets/e5d93a33-f084-4206-9cf3-b44f9019358c" />
+
 
 ---
 
