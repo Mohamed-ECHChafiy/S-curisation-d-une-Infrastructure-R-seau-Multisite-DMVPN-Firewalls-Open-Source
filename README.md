@@ -3,7 +3,7 @@
 Projet de Fin d'Études (PFE) — Infrastructure Digitale, option Réseaux et Systèmes
 **OFPPT — 2024/2026**
 
-Auteur : **Mohamed Ech-Chafiy**
+Auteur : **Mohamed ECH-Chafiy**
 
 ---
 
@@ -36,7 +36,7 @@ L'infrastructure est organisée en plusieurs niveaux de confiance :
    - **CASA** : `R-CASA` + `Switch2` + client `Win7-1`
    - **RABAT** : `R-RABAT` + `Switch1` + client `Kali-1`
 
-> 📷 *Ajoutez ici une capture de la topologie GNS3 (`topology/gns3-topology.png`)*
+<img width="545" height="592" alt="3" src="https://github.com/user-attachments/assets/31381c28-416e-4dea-8b30-94e92792481d" />
 
 ---
 
@@ -136,14 +136,25 @@ Politique de filtrage stricte (Implicit Deny par défaut) sur l'interface périp
 - Rabat → `https://rabat.ma:8443`
 - Casablanca → `https://casablanca.ma:8543`
 
+<img width="1036" height="358" alt="33" src="https://github.com/user-attachments/assets/74905a6a-d5dc-49ba-9bbe-d96d77e79295" />
+
 ---
 
 ## 🖥️ Durcissement du serveur Web (SRV-WEB)
 
 - **Adressage IP statique** via Netplan (`/etc/netplan/99-custom-config.yaml`)
+
+  <img width="471" height="232" alt="ew" src="https://github.com/user-attachments/assets/d5d967b5-8264-46a9-8940-92adf87162be" />
+
 - **VirtualHosts Apache2 HTTPS** (certificats auto-signés) :
   - `rabat.ma.conf` → port `8443`
+
+  <img width="570" height="373" alt="1" src="https://github.com/user-attachments/assets/0f7853eb-a04f-4f71-9dec-93827faf7fa0" />
+
   - `casablanca.ma.conf` → port `8543`
+
+<img width="569" height="372" alt="333" src="https://github.com/user-attachments/assets/749e82d7-3da1-4389-be89-3653d70567fe" />
+
 - **Résolution DNS locale** via **Unbound DNS Overrides** sur OPNsense (`rabat.ma`, `casablanca.ma` → `192.168.100.250`)
 
 ---
