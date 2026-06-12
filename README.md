@@ -156,6 +156,8 @@ Politique de filtrage stricte (Implicit Deny par défaut) sur l'interface périp
 <img width="569" height="372" alt="333" src="https://github.com/user-attachments/assets/749e82d7-3da1-4389-be89-3653d70567fe" />
 
 - **Résolution DNS locale** via **Unbound DNS Overrides** sur OPNsense (`rabat.ma`, `casablanca.ma` → `192.168.100.250`)
+  
+<img width="1288" height="362" alt="2" src="https://github.com/user-attachments/assets/7b158c41-6073-4c91-9a4e-4714f3e21844" />
 
 ---
 
