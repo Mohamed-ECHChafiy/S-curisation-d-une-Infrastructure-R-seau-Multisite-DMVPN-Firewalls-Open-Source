@@ -3,8 +3,13 @@
 Projet de Fin d'Études (PFE) — Infrastructure Digitale, option Réseaux et Systèmes
 **OFPPT — 2024/2026**
 
-Auteur : **Mohamed ECH-Chafiy**
+## 👨‍💻 Auteur
 
+**Mohamed ECH-chafiy**
+- Étudiant en Infrastructure Digitale — Option Systèmes & Réseaux  
+- OFPPT, Arrahma, Casablanca, Maroc  
+- Linkedin : www.linkedin.com/in/mohamed-ech-chafiy
+  
 ---
 
 ## 📌 Contexte et problématique
