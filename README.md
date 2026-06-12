@@ -184,4 +184,4 @@ Politique de filtrage stricte (Implicit Deny par défaut) sur l'interface périp
 
 ## 📜 Licence
 
-Projet académique réalisé dans le cadre du PFE OFPPT — © 2026 Mohamed Ech-Chafiy
+Projet académique réalisé dans le cadre du PFE OFPPT — © 2026 Mohamed ECH-chafiy
