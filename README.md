@@ -167,25 +167,6 @@ Politique de filtrage stricte (Implicit Deny par défaut) sur l'interface périp
 
 ---
 
-## 📂 Structure du repository
-
-```
-├── README.md
-├── docs/
-│   └── Rapport-PFE.pdf
-├── configs/
-│   ├── R-HUB.txt
-│   ├── R-CASA.txt
-│   └── R-RABAT.txt
-├── apache-vhosts/
-│   ├── rabat.ma.conf
-│   └── casablanca.ma.conf
-├── netplan/
-│   └── 99-custom-config.yaml
-└── topology/
-    └── gns3-topology.png
-```
-
 ---
 
 ## 📜 Licence
