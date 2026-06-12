@@ -116,13 +116,31 @@ interface Tunnel0
  tunnel protection ipsec profile IPSEC_PROFILE
 ```
 
-> 📁 Les configurations complètes des trois routeurs (R-HUB, R-CASA, R-RABAT) sont disponibles dans `configs/`.
-
 ---
+
+## 🖥️ Durcissement du serveur Web (SRV-WEB)
+
+- **Adressage IP statique** via Netplan (`/etc/netplan/99-custom-config.yaml`)
+
+ <img width="471" height="232" alt="ew" src="https://github.com/user-attachments/assets/d5d967b5-8264-46a9-8940-92adf87162be" />
+
+- **VirtualHosts Apache2 HTTPS** (certificats auto-signés) :
+  - `rabat.ma.conf` → port `8443`
+
+  <img width="570" height="373" alt="1" src="https://github.com/user-attachments/assets/0f7853eb-a04f-4f71-9dec-93827faf7fa0" />
+  
+  - `casablanca.ma.conf` → port `8543`
+
+  <img width="569" height="372" alt="333" src="https://github.com/user-attachments/assets/749e82d7-3da1-4389-be89-3653d70567fe" />
+
+- **Résolution DNS locale** via **Unbound DNS Overrides** sur OPNsense (`rabat.ma`, `casablanca.ma` → `192.168.100.250`)
+  
+<img width="1288" height="362" alt="2" src="https://github.com/user-attachments/assets/7b158c41-6073-4c91-9a4e-4714f3e21844" />
+
 
 ## 🧱 Matrice des flux et règles de filtrage
 
-Politique de filtrage stricte (Implicit Deny par défaut) sur l'interface périphérique :
+Politique de filtrage stricte (Implicit Deny par défaut) en pFsense sur l'interface périphérique :
 
 | Règle | Source | Destination | Port | Action |
 |---|---|---|---|---|
@@ -132,6 +150,7 @@ Politique de filtrage stricte (Implicit Deny par défaut) sur l'interface périp
 | 4 | NET_CASA | SRV_WEB | 8443 | ❌ Bloqué |
 | 5 | * | * | ICMP | ✅ Autorisé (diagnostic) |
 
+
 ➡️ Chaque ville n'accède au serveur web que via **son port HTTPS dédié** :
 - Rabat → `https://rabat.ma:8443`
 - Casablanca → `https://casablanca.ma:8543`
@@ -140,33 +159,58 @@ Politique de filtrage stricte (Implicit Deny par défaut) sur l'interface périp
 
 ---
 
-## 🖥️ Durcissement du serveur Web (SRV-WEB)
-
-- **Adressage IP statique** via Netplan (`/etc/netplan/99-custom-config.yaml`)
-
-  <img width="471" height="232" alt="ew" src="https://github.com/user-attachments/assets/d5d967b5-8264-46a9-8940-92adf87162be" />
-
-- **VirtualHosts Apache2 HTTPS** (certificats auto-signés) :
-  - `rabat.ma.conf` → port `8443`
-
-  <img width="570" height="373" alt="1" src="https://github.com/user-attachments/assets/0f7853eb-a04f-4f71-9dec-93827faf7fa0" />
-
-  - `casablanca.ma.conf` → port `8543`
-
-<img width="569" height="372" alt="333" src="https://github.com/user-attachments/assets/749e82d7-3da1-4389-be89-3653d70567fe" />
-
-- **Résolution DNS locale** via **Unbound DNS Overrides** sur OPNsense (`rabat.ma`, `casablanca.ma` → `192.168.100.250`)
-  
-<img width="1288" height="362" alt="2" src="https://github.com/user-attachments/assets/7b158c41-6073-4c91-9a4e-4714f3e21844" />
-
----
-
 ## ✅ Validation et tests
 
 - **OSPF** : `show ip ospf neighbor` → adjacences `FULL` confirmées entre R-HUB, R-CASA et R-RABAT.
 - **IPsec Phase 1** : `show crypto isakmp sa` → état `QM_IDLE` actif sur tous les sites.
 - **IPsec Phase 2** : `show crypto ipsec sa` → compteurs de chiffrement/déchiffrement sans erreur (`#send errors 0`, `#recv errors 0`).
+  
+**R-HUB**
+
+  <img width="535" height="441" alt="3" src="https://github.com/user-attachments/assets/c3ec7ae1-4bc0-48b2-99f0-01141ef208d8" />
+
+**R-CASA**
+
+<img width="543" height="408" alt="4" src="https://github.com/user-attachments/assets/d6b2d0b7-d534-4cc6-b6be-e90c4ccd7f73" />
+
+**R-RABAT**
+
+<img width="538" height="497" alt="تت" src="https://github.com/user-attachments/assets/8a4c9bfa-e0dc-4421-8742-b9ec1f75b962" />
+
 - **Services Web** : accès HTTPS validé depuis Rabat (port 8443) et Casablanca (port 8543), avec blocage croisé confirmé.
+
+
+### **LAN CASA `win-7`**
+  
+<img width="548" height="142" alt="4" src="https://github.com/user-attachments/assets/e677f452-a8f0-42b0-9580-f3b91bd2bf76" />
+
+
+` L'accès à https://casablanca.ma:8543`
+
+<img width="737" height="496" alt="1" src="https://github.com/user-attachments/assets/56dc8c7f-ace4-4942-8b21-ecc0b67d6f25" />
+
+
+` Blocage https://rabat.ma:8443`
+
+<img width="735" height="492" alt="2" src="https://github.com/user-attachments/assets/aff90382-94f8-48f4-b86a-3a83f569ef61" />
+
+### **LAN RABAT `KALI`**
+
+ <img width="583" height="157" alt="2" src="https://github.com/user-attachments/assets/1144c7a0-51b7-478b-b9b7-ff08e9cc504e" />
+
+` L'accès à https://rabat.ma:8443`
+
+<img width="666" height="390" alt="4" src="https://github.com/user-attachments/assets/8aeb0c42-7bf5-46f3-94b4-67e350568d54" />
+
+
+` Blocage https://casablanca.ma:8543`
+
+<img width="1083" height="580" alt="weddfv" src="https://github.com/user-attachments/assets/3a0e2bfb-6ac2-483e-a5f1-321aa99b5d17" />
+
+
+
+
+
 - **Wireshark** :
   - Avant chiffrement : trafic OSPF, SSH et ICMP visibles en clair.
   - Après activation du DMVPN/IPsec : seul le protocole **ESP (IP 50)** est visible sur le WAN, preuve du chiffrement total des flux.
